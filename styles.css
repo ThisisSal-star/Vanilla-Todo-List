@@ -1,0 +1,13 @@
+function commonSongs(playlistA, playlistB) {
+  const setA = new Set(playlistA);
+
+  const common = playlistB.filter(song => setA.has(song));
+
+  return common;
+}
+
+const playlistA = ["Hallelujah", "Shape of You", "Blinding Lights"];
+const playlistB = ["Blinding Lights", "Shape of You", "Peaches"];
+
+console.log(commonSongs(playlistA, playlistB)); 
+

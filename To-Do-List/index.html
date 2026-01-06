@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,8 +6,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>to-do-list</title>
   </head>
-  <body>
+  <body data-theme="light">
     <div id="root"></div>
+    <div class="app">
+      <div class="topbar">
+        <div class="title">To-Do List</div>
+        <div class="actions">
+          <button
+            id="themeBtn"
+            class="btn btn-outline"
+            type="button"
+            title="Toggle theme"
+          >
+            🌗 Theme
+          </button>
+          <button id="reloadBtn" class="btn btn-outline" type="button">
+            ↻ Refresh
+          </button>
+        </div>
+      </div>
+
+      <!-- Create / Edit Panel -->
+      <form id="createForm" class="panel" autocomplete="off">
+        <div class="grid-2">
+          <div>
+            <label for="titleInput" class="sr-only">Task title</label>
+            <input
+              id="titleInput"
+              name="title"
+              placeholder="Task title *"
+              required
+            />
+          </div>
+          <div>
+            <label for="dueInput" class="sr-only">Due date and time</label>
+            <input id="dueInput" name="due" type="datetime-local" required />
+          </div>
+        </div>
+        <label for="descInput" class="sr-only">Description</label>
+        <textarea
+          id="descInput"
+          name="description"
+          placeholder="Description (optional)"
+        ></textarea>
+        <div class="inline">
+          <button id="saveBtn" class="btn btn-accent" type="submit">
+            ➕ Add Task
+          </button>
+          <span
+            id="formStatus"
+            class="muted"
+            role="status"
+            aria-live="polite"
+          ></span>
+        </div>
+      </form>
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div>
+          <label for="searchInput" class="sr-only">Search tasks</label>
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Search title or description…"
+          />
+        </div>
+        <select id="filterSelect" aria-label="Filter tasks">
+          <option value="all">All</option>
+          <option value="pending">Pending</option>
+          <option value="completed">Completed</option>
+          <option value="overdue">Overdue</option>
+        </select>
+        <select id="sortSelect" aria-label="Sort tasks">
+          <option value="dueAsc">Sort by Due ↑</option>
+          <option value="dueDesc">Sort by Due ↓</option>
+          <option value="createdDesc">Newest First</option>
+          <option value="createdAsc">Oldest First</option>
+        </select>
+        <button id="clearCompletedBtn" class="btn btn-outline" type="button">
+          Clear Completed
+        </button>
+      </div>
+
+      <!-- List -->
+      <div id="list" class="list"></div>
+      <div id="emptyState" class="empty" hidden>
+        No tasks yet. Add your first one ✨
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
